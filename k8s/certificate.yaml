@@ -1,0 +1,20 @@
+apiVersion: certmanager.k8s.io/v1alpha1
+kind: Certificate
+metadata:
+  name: gcpk8s-info-tls
+spec:
+  secretName: gcpk8s-info
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: gcpk8s.info
+  dnsNames:
+    - gcpk8s.info
+    - www.gcpk8s.info
+  acme:
+    config:
+      - http01:
+          ingressClass: nginx
+        domains:
+          - gcpk8s.info
+          - www.gcpk8s.info
